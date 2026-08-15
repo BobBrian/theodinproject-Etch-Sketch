@@ -1,5 +1,5 @@
 //Use DOM to select our div that acts as the container
-const container = document.querySelector("#container");
+const container = document.querySelector("#grid-container");
 
 //Function that uses a loop to create 256 individual square divs and append them to the container.
 function createGrid(size) {
