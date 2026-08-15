@@ -1,26 +1,32 @@
 //Use DOM to select our div that acts as the container
 const container = document.querySelector("#grid-container");
 
-//Function that uses a loop to create 256 individual square divs and append them to the container.
-function createGrid(size) {
-  // Initalize variable that multiplies the number of spaces by itself so that we get an even grid
-  const totalSquares = size * size;
+//Function that uses a loop to create a grid by multiplying a number by itself.
+//When started the program assumes that a new grid is going to be created by default so the user is greated with a prompt window
+//Asking them to enter a number
+function getGridSize(){
+    let userInput = parseInt(prompt("Please enter the number of squares per side (2 - 100):"), 10);
 
-    function totalSquare() {
-        let totalSquares = parseInt(prompt("Please enter the number of squares for your grid (2 - 100):"), 10);
-
-        // 1. Check if the value is not a number (NaN)
-        // 2. Check if the value is less than 2
-        // 3. Check if the value is greater than 100
-        if (isNaN(totalSquares) || totalSquares < 2 || totalSquares > 100) {
-            alert("Invalid input! Please enter a whole number between 2 and 100.");
-            return null; // Returns null to signal the function failed to get a valid number
-        }
-
-        return totalSquares; // Returns the valid integer
+    // Validate the input boundaries
+    // Boundry 1 - That our Input is an Integer
+    // Boundry 2 - That it is an Integer between 2 and 100
+    if (isNaN(userInput) || userInput < 2 || userInput > 100) {
+        alert("Invalid input! Please enter a whole number between 2 and 100.");
+        return null; // Return null to signal validation failed
     }
 
-  
+    return userInput; // Return the valid number. Remeber this becuase returning values is going to be important
+
+}
+
+function createGrid(size) {
+
+  // Clear any existing grid squares before making a new one
+  container.innerHTML = ''; 
+
+   // Multiply the number of spaces by itself so that we get a perfect grid area
+   const totalSquares = size * size;
+
   for (let i = 0; i < totalSquares; i++) {
 
     //document.createElement is a DOM operation that allows us to create HTML elements
@@ -41,4 +47,10 @@ function createGrid(size) {
   }
 }
 
-createGrid();
+// --- EXECUTION FLOW ---
+const verifiedSize = getGridSize();
+
+// Only create the grid if the user provided a valid number (did not return null)
+if (verifiedSize !== null) {
+    createGrid(verifiedSize);
+}
