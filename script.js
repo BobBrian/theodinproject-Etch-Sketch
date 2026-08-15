@@ -1,5 +1,6 @@
 //Use DOM to select our div that acts as the container
 const container = document.querySelector("#grid-container");
+const resetBtn = document.querySelector("#reset-btn");
 
 //Function that uses a loop to create a grid by multiplying a number by itself.
 //When started the program assumes that a new grid is going to be created by default so the user is greated with a prompt window
@@ -54,3 +55,11 @@ const verifiedSize = getGridSize();
 if (verifiedSize !== null) {
     createGrid(verifiedSize);
 }
+
+resetBtn.addEventListener("click", () => {
+    const verifiedSize = getGridSize();
+
+    if (verifiedSize !== null) {
+        createGrid(verifiedSize);
+    }
+});
