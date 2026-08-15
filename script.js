@@ -1,14 +1,15 @@
-//Use DOM to select our div that acts as the container
+// Use DOM to select HTML eleemnts
+// Keep the grid container and reset button available so they can be
+// updated in response to the user's input.
 const container = document.querySelector("#grid-container");
 const resetBtn = document.querySelector("#reset-btn");
 
-//Function that uses a loop to create a grid by multiplying a number by itself.
-//When started the program assumes that a new grid is going to be created by default so the user is greated with a prompt window
-//Asking them to enter a number
+
 function getGridSize(){
     let userInput = parseInt(prompt("Please enter the number of squares per side (2 - 100):"), 10);
 
-    // Validate the input boundaries
+    // Limiting the grid prevents invalid input and keeps the number of
+    // elements created at a reasonable level for the browser.
     // Boundry 1 - That our Input is an Integer
     // Boundry 2 - That it is an Integer between 2 and 100
     if (isNaN(userInput) || userInput < 2 || userInput > 100) {
@@ -16,16 +17,16 @@ function getGridSize(){
         return null; // Return null to signal validation failed
     }
 
-    return userInput; // Return the valid number. Remeber this becuase returning values is going to be important
-
+    return userInput; 
 }
 
 function createGrid(size) {
 
-  // Clear any existing grid squares before making a new one
+  // Remove the previous grid so that resetting creates a fresh grid
+  // instead of adding new squares to the existing one.
   container.innerHTML = ''; 
 
-   // Multiply the number of spaces by itself so that we get a perfect grid area
+   
    const totalSquares = size * size;
 
   for (let i = 0; i < totalSquares; i++) {
@@ -50,14 +51,15 @@ function createGrid(size) {
   }
 }
 
-// --- EXECUTION FLOW ---
+// The return valye of getGridSize() is stored in the variable verifiedSize
 const verifiedSize = getGridSize();
 
 // Only create the grid if the user provided a valid number (did not return null)
 if (verifiedSize !== null) {
     createGrid(verifiedSize);
 }
-
+// Reuse the same grid creation process so the reset button can generate
+// a new grid without duplicating the grid-generation logic.
 resetBtn.addEventListener("click", () => {
     const verifiedSize = getGridSize();
 
