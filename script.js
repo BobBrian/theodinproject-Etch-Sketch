@@ -5,6 +5,21 @@ const container = document.querySelector("#grid-container");
 function createGrid(size) {
   // Initalize variable that multiplies the number of spaces by itself so that we get an even grid
   const totalSquares = size * size;
+
+    function totalSquare() {
+        let totalSquares = parseInt(prompt("Please enter the number of squares for your grid (2 - 100):"), 10);
+
+        // 1. Check if the value is not a number (NaN)
+        // 2. Check if the value is less than 2
+        // 3. Check if the value is greater than 100
+        if (isNaN(totalSquares) || totalSquares < 2 || totalSquares > 100) {
+            alert("Invalid input! Please enter a whole number between 2 and 100.");
+            return null; // Returns null to signal the function failed to get a valid number
+        }
+
+        return totalSquares; // Returns the valid integer
+    }
+
   
   for (let i = 0; i < totalSquares; i++) {
 
@@ -26,4 +41,4 @@ function createGrid(size) {
   }
 }
 
-createGrid(16);
+createGrid();
