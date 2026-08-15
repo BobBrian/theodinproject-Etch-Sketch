@@ -35,6 +35,8 @@ function createGrid(size) {
 
     //classList.add is a DOM operation that allows us to add CSS to a HTML element
     square.classList.add("grid-square");
+    square.style.width = `${100 / size}%`;
+    square.style.height = `${100 / size}%`;
 
     //This is an event lister that give the mouse a hover effect changing the color of the squares
     square.addEventListener("mouseenter", () => {

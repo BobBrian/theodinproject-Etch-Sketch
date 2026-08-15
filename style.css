@@ -32,8 +32,6 @@ body {
 
 .grid-square {
     flex: none; /* Prevents growing and shrinking */
-    width: calc(100% / 16); 
-    height: calc(100% / 16);
     border: 1px solid #ddd;
     transition: background-color 0.1s ease;
 }
